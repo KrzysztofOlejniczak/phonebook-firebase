@@ -1,13 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import {
   addContact,
   deleteContact,
   fetchContacts,
   updateContact,
-} from './operation';
-import { toast } from 'react-hot-toast';
+} from "./operation";
+import { toast } from "react-hot-toast";
+import { logOut } from "redux/auth/operations";
 
-const handlePending = state => {
+const handlePending = (state) => {
   state.isLoading = true;
 };
 const handleRejected = (state, action) => {
@@ -17,14 +18,17 @@ const handleRejected = (state, action) => {
 };
 
 const contactsSlice = createSlice({
-  name: 'contacts',
+  name: "contacts",
   initialState: {
     items: [],
     isLoading: false,
     error: null,
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+      })
       .addCase(fetchContacts.pending, handlePending)
       .addCase(addContact.pending, handlePending)
       .addCase(deleteContact.pending, handlePending)
@@ -42,27 +46,27 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items.push(action.payload);
-        toast.success('Contact added');
+        toast.success("Contact added");
       })
       .addCase(updateContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         const indexToUpdate = state.items.findIndex(
-          contact => contact.id === action.payload.id
+          (contact) => contact.id === action.payload.id
         );
         if (indexToUpdate >= 0) {
           state.items[indexToUpdate] = action.payload;
         }
-        toast.success('Contact updated');
+        toast.success("Contact updated");
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         const index = state.items.findIndex(
-          contact => contact.id === action.payload.id
+          (contact) => contact.id === action.payload
         );
         state.items.splice(index, 1);
-        toast.success('Contact deleted');
+        toast.success("Contact deleted");
       });
   },
 });

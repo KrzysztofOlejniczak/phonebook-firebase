@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,7 @@ import {
   selectModalId,
   selectModalOpen,
 } from "redux/contacts/selectors";
-// import { fetchContacts } from "redux/contacts/operation";
+import { fetchContacts } from "redux/contacts/operation";
 import { Box, Modal } from "@mui/material";
 import { closeModal } from "redux/contacts/modalSlice";
 import { ContactForm } from "components/ContactForm/ContactForm";
@@ -33,9 +33,9 @@ const ContactsPage = () => {
   const modalId = useSelector(selectModalId);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const handleClose = () => {
     dispatch(closeModal());
