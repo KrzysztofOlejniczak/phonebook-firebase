@@ -1,19 +1,19 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { Link as RouterLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/operations';
-import { Helmet } from 'react-helmet-async';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import { Link as RouterLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logIn } from "redux/auth/operations";
+import { Helmet } from "react-helmet-async";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     dispatch(
@@ -34,9 +34,9 @@ const LoginPage = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -74,12 +74,12 @@ const LoginPage = () => {
           </Button>
           <Grid container>
             {/* <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid> */}
+              <Link component={RouterLink} to={"/reset"} variant="body2">
+                Forgot password?
+              </Link>
+            </Grid> */}
             <Grid item>
-              <Link component={RouterLink} to={'/signup'} variant="body2">
+              <Link component={RouterLink} to={"/signup"} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

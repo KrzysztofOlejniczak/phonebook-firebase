@@ -6,6 +6,7 @@ import {
   // sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "../../firebase";
 
 /*
@@ -13,13 +14,16 @@ import {
  */
 export const register = createAsyncThunk(
   "auth/register",
-  async ({ email, password }, thunkAPI) => {
+  async ({ name, email, password }, thunkAPI) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
+      await updateProfile(auth.currentUser, {
+        displayName: name,
+      });
       // sendEmailVerification(auth.currentUser);
       return userCredential.user.toJSON();
     } catch (error) {

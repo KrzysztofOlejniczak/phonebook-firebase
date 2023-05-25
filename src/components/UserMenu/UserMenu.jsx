@@ -40,7 +40,9 @@ export const UserMenu = () => {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>{user.email[0]}</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}>
+              {user.displayName[0]}
+            </Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -82,7 +84,7 @@ export const UserMenu = () => {
         <MenuItem
           disabled
           style={{ opacity: 1 }}
-        >{`Hello ${user.email}`}</MenuItem>
+        >{`Hello ${user.displayName}`}</MenuItem>
         <MenuItem onClick={addContact}>
           <ListItemIcon>
             <AddIcon fontSize="small" />
